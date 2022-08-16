@@ -16,14 +16,14 @@ let storage = multer.diskStorage({
       cb(null, './uploads');
     },
     filename: (req, file, cb) => {
-      cb(null,file.fieldname + '-' + Date.now());
+      cb(null,file.originalname + '-' + Date.now());
     }
 });
 let upload = multer({storage: storage});
 
  
 app.get('/', function (req, res) {
-  res.end('file upload');
+  res.send('file upload');
 });
  
 app.post('/',upload.single('file'), function (req, res) {
